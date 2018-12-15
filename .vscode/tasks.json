@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "dotnetbuild",
+      "command": "dotnet build",
+      "type": "shell",
+      "presentation": {
+        "reveal": "silent"
+      }
+    },
+    {
+      "label": "clean",
+      // put your path to server-files
+      // pls make sure that folder example exist in resources cause it can call an error
+      "command": "del C:\\Users\\User\\Desktop\\FoxRP\\bridge\\resources\\example\\*.*",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "type": "shell"
+    },
+    // put your path to server-files
+    {
+      "label": "copy library",
+      "command": "copy ${workspaceFolder}\\bin\\Debug\\netcoreapp2.0\\example.dll C:\\Users\\User\\Desktop\\FoxRP\\bridge\\resources\\example",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "type": "shell"
+    },
+    // put your path to server-files
+    {
+      "label": "copy meta",
+      "command": "copy ${workspaceFolder}\\meta.xml C:\\Users\\User\\Desktop\\FoxRP\\bridge\\resources\\example",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "type": "shell"
+    },
+    {
+      "label": "build",
+      "dependsOn": ["clean", "dotnetbuild", "copy library", "copy meta"]
+    }
+  ]
+}
